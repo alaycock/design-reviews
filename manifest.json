@@ -1,0 +1,14 @@
+{
+  "name": "Design reviews",
+  "id": "1375485612452702216",
+  "api": "1.0.0",
+  "editorType": ["figma", "figjam"],
+  "permissions": ["currentuser"],
+  "documentAccess": "dynamic-page",
+  "containsWidget": true,
+  "main": "dist/code.js",
+  "widgetApi": "1.0.0",
+  "networkAccess": {
+    "allowedDomains": ["https://*.figma.com"]
+  }
+}
