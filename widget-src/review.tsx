@@ -97,6 +97,7 @@ const review = ({
       direction="vertical"
       horizontalAlignItems="start"
       verticalAlignItems="start"
+      width="fill-parent"
       height="hug-contents"
       padding={8}
       fill="#FFFFFF"

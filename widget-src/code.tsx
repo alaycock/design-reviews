@@ -1,8 +1,16 @@
 import Review from "./review";
 
 const { widget } = figma;
-const { AutoLayout, Fragment, Text, usePropertyMenu, useSyncedMap, Rectangle } =
-  widget;
+const {
+  AutoLayout,
+  Fragment,
+  Text,
+  Input,
+  usePropertyMenu,
+  useSyncedMap,
+  useSyncedState,
+  Rectangle,
+} = widget;
 
 const reviewOptions = [
   {
@@ -29,6 +37,10 @@ const reviewOptions = [
 
 function Widget() {
   const reviewMap = useSyncedMap<any>("userIdReviews");
+  const [feedbackComment, setFeedbackComment] = useSyncedState<string>(
+    "feedback",
+    ""
+  );
 
   usePropertyMenu(
     [
@@ -85,15 +97,34 @@ function Widget() {
       spacing={24}
       width={360}
     >
-      <Text
-        fontSize={20}
-        fontFamily="Inter"
-        fontWeight="medium"
-        lineHeight={20}
+      <AutoLayout
+        direction="vertical"
+        horizontalAlignItems="start"
+        verticalAlignItems="start"
+        height="hug-contents"
+        fill="#FFFFFF"
         width="fill-parent"
+        spacing={12}
       >
-        Feedback
-      </Text>
+        <Text
+          fontSize={20}
+          fontFamily="Inter"
+          fontWeight="bold"
+          lineHeight={20}
+          width="fill-parent"
+        >
+          Feedback
+        </Text>
+        <Input
+          width="fill-parent"
+          onTextEditEnd={(text) => setFeedbackComment(text.characters)}
+          value={feedbackComment}
+          placeholder="What are you looking for feedback on?"
+          fontSize={16}
+          lineHeight={24}
+          fontFamily="Inter"
+        />
+      </AutoLayout>
       <Rectangle
         width="fill-parent"
         height={1}
@@ -135,7 +166,7 @@ function Widget() {
           lineHeight={20}
           width="fill-parent"
         >
-          Leave a review using the dropdown. ⬆️
+          Be the first to leave a review using the dropdown above. ✨
         </Text>
       )}
     </AutoLayout>
